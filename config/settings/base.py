@@ -49,7 +49,7 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "bank_mini_project.urls.urls_dev"
+ROOT_URLCONF = "config.urls.urls_dev"
 
 TEMPLATES = [
     {
