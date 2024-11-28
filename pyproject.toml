@@ -13,6 +13,8 @@ django-restframework = "^0.0.1"
 
 [tool.poetry.group.dev.dependencies]
 drf-yasg = "^1.21.8"
+black = "^24.10.0"
+isort = "^5.13.2"
 
 [build-system]
 requires = ["poetry-core"]
