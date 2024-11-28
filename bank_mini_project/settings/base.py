@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -74,13 +75,13 @@ WSGI_APPLICATION = "bank_mini_project.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': os.environ.get('BANK_DB_USER', "postgres"),
-        'PASSWORD': os.environ.get('BANK_DB_PASSWORD', "0000"),
-        'HOST': os.environ.get('DB_HOST', 'localhost'),
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": os.environ.get("BANK_DB_USER", "postgres"),
+        "PASSWORD": os.environ.get("BANK_DB_PASSWORD", "0000"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": "5432",
     }
 }
 
