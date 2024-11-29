@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
+
 import os
 from pathlib import Path
 
@@ -25,8 +26,7 @@ SECRET_KEY = "django-insecure-w8f-qsj!x&@_sae6yhpz9_=hvzn=kj@2*12_ouvk00pyo(%&s#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ["127.0.0.1"]
 
 # Application definition
 
@@ -49,13 +49,12 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "bank_mini_project.urls.urls_dev"
+ROOT_URLCONF = "config.urls.urls_dev"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'templates']
-        ,
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -75,13 +74,13 @@ WSGI_APPLICATION = "config.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': os.environ.get("BANK_DB_USER_NAME"),
-        'PASSWORD': os.environ.get('BANK_DB_USER_PASSWORD'),
-        'HOST': os.environ.get("DB_HOST", "localhost"),
-        'PORT': '5432',
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "postgres",
+        "USER": os.environ.get("BANK_DB_USER_NAME", "postgres"),
+        "PASSWORD": os.environ.get("BANK_DB_USER_PASSWORD", "0000"),
+        "HOST": os.environ.get("DB_HOST", "localhost"),
+        "PORT": "5432",
     }
 }
 
