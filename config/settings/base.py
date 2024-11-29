@@ -37,6 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # own_apps
+    "bank.apps.BankConfig",
+    "member.apps.MemberConfig",
 ]
 
 MIDDLEWARE = [
@@ -76,7 +79,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "postgres",
+        "NAME": "bank",
         "USER": os.environ.get("BANK_DB_USER_NAME", "postgres"),
         "PASSWORD": os.environ.get("BANK_DB_USER_PASSWORD", "0000"),
         "HOST": os.environ.get("DB_HOST", "localhost"),
@@ -125,3 +128,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "member.Users"
