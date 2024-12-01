@@ -1,4 +1,3 @@
-import uuid
 from datetime import datetime
 from typing import Any, Dict, Union
 
@@ -46,11 +45,13 @@ class Users(AbstractBaseUser):
     is_active = models.BooleanField(default=False)
     last_login = models.DateTimeField(null=True)
     is_email_verified = models.BooleanField(default=False)
-    email_verification_token = models.UUIDField(unique=True, default=uuid.uuid4)
+    email_verification_token = models.CharField(max_length=100, blank=True)
     objects = UserManager()
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["name","password"]
+    REQUIRED_FIELDS = ["name"]
+    # 영현 추가 start(이메일 인증을 위한 모델 컬럼 추가)
 
+    # 영현 추가 end
     def has_perm(self, perm: Any, obj: Any = None) -> bool:
         return True
 
