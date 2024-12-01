@@ -2,7 +2,6 @@ from rest_framework import serializers
 from .models import Users
 
 class UserGetUpdateSerializer(serializers.ModelSerializer):
-from .models import Users  # 또는 CustomUser 모델을 import
 
 
 class RegisterSerializer(
