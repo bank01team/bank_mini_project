@@ -422,6 +422,16 @@ dev = ["build", "hatch"]
 doc = ["sphinx"]
 
 [[package]]
+name = "tokens"
+version = "0.0.3"
+description = "tokens is a Python Package created for simply scraping discord account data with the use of an account token."
+optional = false
+python-versions = "*"
+files = [
+    {file = "tokens-0.0.3.tar.gz", hash = "sha256:2bea467603cf36f6affbdf8f923b9d90aeaa69b5b812b0bbee1922eb05dd9b49"},
+]
+
+[[package]]
 name = "types-pyyaml"
 version = "6.0.12.20240917"
 description = "Typing stubs for PyYAML"
@@ -468,4 +478,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "32b0e1387d54f774871027ae84570361c24ae017eaf9805c81daeb4e0e21be76"
+content-hash = "111477d819010b8741ee044cf8f433d06243db979209f9731f2116f683ffe57c"
