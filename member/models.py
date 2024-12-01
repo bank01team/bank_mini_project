@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime
 from typing import Any, Dict, Union
 
@@ -44,9 +45,11 @@ class Users(AbstractBaseUser):
     is_admin = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
     last_login = models.DateTimeField(null=True)
+    is_email_verified = models.BooleanField(default=False)
+    email_verification_token = models.UUIDField(unique=True, default=uuid.uuid4)
     objects = UserManager()
     USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = ["name"]
+    REQUIRED_FIELDS = ["name","password"]
 
     def has_perm(self, perm: Any, obj: Any = None) -> bool:
         return True
