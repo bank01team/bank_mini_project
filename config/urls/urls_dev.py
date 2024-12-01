@@ -16,18 +16,18 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path, include
-from rest_framework import permissions
-from drf_yasg.views import get_schema_view
+from django.urls import include, path
 from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 
-from member.views import RegisterView, ActivateToken
+from member.views import ActivateToken, RegisterView
 
-#영현 추가
+# 영현 추가
 schema_view = get_schema_view(
     openapi.Info(
         title="API 문서",
-        default_version='v1',
+        default_version="v1",
         description="API 문서입니다",
         terms_of_service="https://www.google.com/policies/terms/",
         contact=openapi.Contact(email="devmon724@google.com"),
@@ -38,10 +38,10 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
     # 영현 추가
-    path('register/', RegisterView.as_view({"post" : "create"}), name='register'),
-    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-    path('verify-email/', ActivateToken.as_view({"get" : "activate"}), name='verify-email'),
+    path("register/", RegisterView.as_view({"post": "create"}), name="register"),
+    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+    path("verify-email/", ActivateToken.as_view({"get": "activate"}), name="verify-email"),
 ]

@@ -137,9 +137,9 @@ AUTH_USER_MODEL = "member.Users"
 # 영현 추가
 
 # 이메일 인증을 위한 설정.
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'  # Gmail SMTP 서버 사용
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"  # Gmail SMTP 서버 사용
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'devmon724@gmail.com'  # 발신 이메일 주소
-EMAIL_HOST_PASSWORD = 'yweb vhnl hfre xskj' # 이메일 비밀번호
+EMAIL_HOST_USER = "devmon724@gmail.com"  # 발신 이메일 주소
+EMAIL_HOST_PASSWORD = "yweb vhnl hfre xskj"  # 이메일 비밀번호
