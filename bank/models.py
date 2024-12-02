@@ -35,6 +35,3 @@ class TransactionHistory(models.Model):
     ts_type = models.CharField(max_length=10, choices=Transaction.TransactionType)
     td_date = models.DateField()
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE)
-
-
-# textchoice상속받은 클래스만들어서 사용

@@ -42,6 +42,7 @@ urlpatterns = [
     path("register/", RegisterView.as_view({"post": "create"}), name="register"),
     path("verify-email/", ActivateToken.as_view({"get": "activate"}), name="verify-email"),
     path("api/v1/", include("member.urls")),
+    path("api/v1/", include("bank.urls")),
     path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
     path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
 ]
