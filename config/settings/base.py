@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     # own_apps
     "bank.apps.BankConfig",
     "member.apps.MemberConfig",
-    # 영현 추가
+    # third_apps
+    "rest_framework_simplejwt",
+    "rest_framework_simplejwt.token_blacklist",
+    "dj_rest_auth",
     "rest_framework",
+    "rest_framework.authtoken",
     "drf_yasg",
 ]
 
@@ -133,6 +137,31 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 AUTH_USER_MODEL = "member.Users"
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+        "dj_rest_auth.jwt_auth.JWTCookieAuthentication",
+    ],
+}
+
+SIMPLE_JWT = {
+    "AUTH_COOKIE": "access_token",
+    "AUTH_COOKIE_REFRESH": "refresh_token",
+    "AUTH_COOKIE_HTTP_ONLY": True,
+    "AUTH_COOKIE_PATH": "/",
+    "AUTH_COOKIE_SECURE": False,
+    "AUTH_COOKIE_SAMESITE": "Lax",
+}
+
+REST_AUTH = {
+    "USE_JWT": True,
+    "JWT_AUTH_COOKIE": "access_token",
+    "JWT_AUTH_REFRESH_COOKIE": "refresh_token",
+    "JWT_AUTH_HTTPONLY": True,
+    "JWT_AUTH_SECURE": False,
+    "JWT_AUTH_SAMESITE": "Lax",
+}
 
 # 영현 추가
 
