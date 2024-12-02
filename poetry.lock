@@ -355,17 +355,6 @@ coreapi = ["coreapi (>=2.0.0)"]
 markdown = ["types-Markdown (>=0.1.5)"]
 
 [[package]]
-name = "djangorestframework-types"
-version = "0.9.0"
-description = "Type stubs for Django Rest Framework"
-optional = false
-python-versions = "<4.0,>=3.8"
-files = [
-    {file = "djangorestframework_types-0.9.0-py3-none-any.whl", hash = "sha256:5e4258fe43774d0a3d018780170bd702bf615407fe244453ea5ec6e6676b98c4"},
-    {file = "djangorestframework_types-0.9.0.tar.gz", hash = "sha256:aa6b27fbdab5ff4ab1dfa5376f3b6ec45713ce48dbcdd4226bf3e1410f0deaca"},
-]
-
-[[package]]
 name = "drf-yasg"
 version = "1.21.8"
 description = "Automated generation of real Swagger/OpenAPI 2.0 schemas from Django Rest Framework code."
@@ -785,4 +774,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "b6ea744d82088e582884d9d450db285d691ee9dd6c2aee87cd5e9171310233f9"
+content-hash = "66c06a9808667d3b2ebddf5ec4634f537e62646aae54886750d4b074e72cfbdc"
