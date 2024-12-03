@@ -43,7 +43,7 @@ class UserLoginAPI(APIView):
         if not check_password(password, user.password):
             return Response({"message": "비밀번호가 틀렸습니다."}, status=status.HTTP_400_BAD_REQUEST)
 
-        token: Token = TokenObtainPairSerializer.get_token(user)
+        token = TokenObtainPairSerializer.get_token(user)
         access_token = str(token.access_token)  # type: ignore
         refresh_token = str(token)
 
@@ -58,8 +58,7 @@ class UserLoginAPI(APIView):
 
         response.set_cookie("access_token", access_token, httponly=True)
         response.set_cookie("refresh_token", refresh_token, httponly=True)
-        # 영현 추가
-        request.session["user_id"] = user.id
+
         return response
 
 

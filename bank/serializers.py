@@ -2,7 +2,15 @@ from typing import Any
 
 from rest_framework import serializers
 
+from bank.models import TransactionHistory
+
 from .models import Accounts
+
+
+class BankTransactionSerializer(serializers.ModelSerializer[TransactionHistory]):
+    class Meta:
+        model = TransactionHistory
+        fields = "__all__"
 
 
 class AccountSerializer(serializers.ModelSerializer[Accounts]):
