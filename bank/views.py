@@ -1,19 +1,20 @@
+from django.db.models import QuerySet
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.exceptions import PermissionDenied
-from rest_framework.mixins import CreateModelMixin, DestroyModelMixin, UpdateModelMixin
+from rest_framework.mixins import (
+    CreateModelMixin,
+    DestroyModelMixin,
+    ListModelMixin,
+    UpdateModelMixin,
+)
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 from bank.models import Accounts, TransactionHistory
 from bank.serializers import BankTransactionSerializer
-from django.db.models import QuerySet
-from rest_framework.mixins import CreateModelMixin, DestroyModelMixin, ListModelMixin
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.request import Request
-from rest_framework.response import Response
-from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
 from .models import Accounts
 from .serializers import AccountSerializer
@@ -62,6 +63,7 @@ class TransactionHistoryView(CreateModelMixin, UpdateModelMixin, DestroyModelMix
         if account.user_id != request.user.id:
             raise PermissionDenied()
         return super().destroy(request)
+
 
 class AccountViewSet(CreateModelMixin, DestroyModelMixin, GenericViewSet[Accounts]):
     permission_classes = [IsAuthenticated]

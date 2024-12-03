@@ -1,9 +1,8 @@
 from django.urls import path
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
-from bank.views import TransactionHistoryView
+from bank.views import AccountViewSet, TransactionHistoryView
 from member.views import LogoutView, UserLoginAPI, UsersViewSet
-from bank.views import AccountViewSet
 
 app_name = "bank"
 

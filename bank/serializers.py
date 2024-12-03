@@ -1,12 +1,11 @@
-from rest_framework import serializers
-
-from bank.models import TransactionHistory
-
 from typing import Any
 
 from rest_framework import serializers
 
+from bank.models import TransactionHistory
+
 from .models import Accounts
+
 
 class BankTransactionSerializer(serializers.ModelSerializer[TransactionHistory]):
     class Meta:

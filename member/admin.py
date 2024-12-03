@@ -10,8 +10,8 @@ from .models import Users
 
 
 @admin.register(Users)
-class UsersAdmin(admin.ModelAdmin): # type: ignore
-    def get_fields(self, request:Any, obj: Model | None=None)->Sequence[str | Sequence[str]]:
+class UsersAdmin(admin.ModelAdmin):  # type: ignore
+    def get_fields(self, request: Any, obj: Model | None = None) -> Sequence[str | Sequence[str]]:
         fields = super().get_fields(request, obj)
         if not request.user.is_admin:
             # 일반 사용자는 is_admin 필드를 볼 수 없음
