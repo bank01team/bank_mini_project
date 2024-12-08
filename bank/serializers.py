@@ -1,5 +1,6 @@
 from typing import Any
 
+from matplotlib.rcsetup import validate_color
 from rest_framework import serializers
 
 from bank.models import TransactionHistory
@@ -8,6 +9,8 @@ from .models import Accounts
 
 
 class BankTransactionSerializer(serializers.ModelSerializer[TransactionHistory]):
+    account_number = serializers.CharField(source="account.account_number", read_only=True)
+
     class Meta:
         model = TransactionHistory
         fields = "__all__"

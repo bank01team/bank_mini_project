@@ -29,9 +29,9 @@ class Transaction(models.Model):
 class TransactionHistory(models.Model):
     deposit = models.IntegerField()
     withdraw = models.IntegerField()
-    balance = models.IntegerField()
+    balance = models.IntegerField(null=True, blank=True)
     details = models.CharField(max_length=50)
     dw_type = models.CharField(max_length=10, choices=DepositWithdraw.DepositWithdrawType)
     ts_type = models.CharField(max_length=10, choices=Transaction.TransactionType)
-    td_date = models.DateField()
+    td_date = models.DateField(auto_now_add=True)
     account = models.ForeignKey(Accounts, on_delete=models.CASCADE)

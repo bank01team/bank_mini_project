@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # own_apps
     "bank.apps.BankConfig",
     "member.apps.MemberConfig",
+    "analysis.apps.AnalysisConfig",
     # third_apps
     "rest_framework_simplejwt",
     "rest_framework_simplejwt.token_blacklist",

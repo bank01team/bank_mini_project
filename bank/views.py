@@ -1,6 +1,10 @@
+from typing import Any
+
+from django.db import transaction
 from django.db.models import QuerySet
 from drf_yasg import openapi
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.mixins import (
     CreateModelMixin,
@@ -22,9 +26,27 @@ from .serializers import AccountSerializer
 
 # Create your views here.
 class TransactionHistoryView(CreateModelMixin, UpdateModelMixin, DestroyModelMixin, GenericViewSet[TransactionHistory]):
-    queryset = TransactionHistory.objects.all()
+    permission_classes = [IsAuthenticated]
+    queryset = TransactionHistory.objects.all().prefetch_related()
     serializer_class = BankTransactionSerializer
     lookup_field = "id"
+
+    def create(self, request: Request, *args: Any, **kwargs: Any) -> Response:
+        account = Accounts.objects.get(user_id=request.user.id, id=request.data["account"])
+        balance = account.balance
+        if request.data["dw_type"] == "입금":
+            account.balance = request.data["deposit"] + balance
+            request.data["balance"] = account.balance
+            serializer = self.get_serializer(data=request.data)
+        else:
+            account.balance = balance - request.data["withdraw"]
+            request.data["balance"] = account.balance
+            serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        with transaction.atomic():
+            serializer.save()
+            account.save()
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @swagger_auto_schema(  # type: ignore
         manual_parameters=[
@@ -36,7 +58,7 @@ class TransactionHistoryView(CreateModelMixin, UpdateModelMixin, DestroyModelMix
     )
     def list(self, request: Request):
         ts_type = request.query_params.get("ts_type")
-        dw_type = request.query_params.get("dw_type")
+        dw_type = request.query_params.get("w_type")
 
         accounts = Accounts.objects.filter(user_id=request.user.id)
         response = {}
