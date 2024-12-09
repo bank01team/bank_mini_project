@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-w8f-qsj!x&@_sae6yhpz9_=hvzn=kj@2*12_ouvk00pyo(%&s#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1"]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     "rest_framework",
     "rest_framework.authtoken",
     "drf_yasg",
+    "django_celery_results",
+    "django_celery_beat",
 ]
 
 MIDDLEWARE = [
@@ -173,3 +175,16 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = "devmon724@gmail.com"  # 발신 이메일 주소
 EMAIL_HOST_PASSWORD = "yweb vhnl hfre xskj"  # 이메일 비밀번호
+
+# Celery 기본 설정
+CELERY_BROKER_URL = "redis://127.0.0.1:6379/0"
+CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_EXTENDED = True  # 확장된 작업 정보 포함
+CELERY_TASK_TRACK_STARTED = True  # 작업 실행 시간 추적
+CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
+
+# 추가 설정
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_RESULT_SERIALIZER = "json"
+CELERY_TIMEZONE = "Asia/Seoul"
